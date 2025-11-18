@@ -8,8 +8,9 @@ export default function HeroSection() {
     setIsVisible(true);
   }, []);
 
+  // ✅ Función para scroll suave a la sección de contacto
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contacto');
+    const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
