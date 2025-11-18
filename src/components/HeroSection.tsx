@@ -9,7 +9,7 @@ export default function HeroSection() {
   }, []);
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
+    const contactSection = document.getElementById('contacto');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }

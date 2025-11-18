@@ -499,45 +499,49 @@ const ContactSection: React.FC = () => {
         </div>
 
         {/* Call to Action */}
-        <div
-          className="mt-12 md:mt-16 text-center bg-[#000000]/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-[#CEA663]/20 hover-glow transition-all duration-300"
-        >
-          <h3 className="font-taviraj text-xl md:text-2xl font-bold mb-3 md:mb-4 text-white">
-            ¿Listo para tu transformación integral?
-          </h3>
-          <p className="font-quicksand text-gray-300 mb-5 max-w-2xl mx-auto text-balance">
-            Combinamos ciencia avanzada con un enfoque humano para ayudarte a verte y sentirte mejor.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
-            <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full sm:w-auto"
-            >
-              <Button
-                size="lg"
-                className="group w-full sm:w-auto px-6 bg-[#CEA663] hover:bg-[#C4A490] text-black font-quicksand font-semibold"
-              >
-                Agenda tu cita hoy
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </a>
-            <a
-              href="#faq"
-              className="block w-full sm:w-auto"
-            >
-              <Button
-                variant="outline"
-                size="lg"
-                className="group w-full sm:w-auto px-6 border-[#CEA663]/30 text-white hover:border-[#CEA663] hover:bg-[#CEA663]/20 font-quicksand"
-              >
-                Ver preguntas frecuentes
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </a>
-          </div>
-        </div>
+<div
+  className="mt-12 md:mt-16 text-center bg-[#000000]/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-[#CEA663]/20 hover-glow transition-all duration-300"
+>
+  <h3 className="font-taviraj text-xl md:text-2xl font-bold mb-3 md:mb-4 text-white">
+    ¿Listo para tu transformación integral?
+  </h3>
+  <p className="font-quicksand text-gray-300 mb-5 max-w-2xl mx-auto text-balance">
+    Combinamos ciencia avanzada con un enfoque humano para ayudarte a verte y sentirte mejor.
+  </p>
+  <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+    <a
+      href={`https://wa.me/${WHATSAPP_NUMBER}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block w-full sm:w-auto"
+    >
+      <Button
+        size="lg"
+        className="group w-full sm:w-auto px-6 bg-[#CEA663] hover:bg-[#C4A490] text-black font-quicksand font-semibold"
+      >
+        Agenda tu cita hoy
+        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+      </Button>
+    </a>
+    <Button
+      variant="outline"
+      size="lg"
+      className="group w-full sm:w-auto px-6 border-[#CEA663]/30 text-white hover:border-[#CEA663] hover:bg-[#CEA663]/20 font-quicksand"
+      onClick={(e) => {
+        e.preventDefault();
+        const faqSection = document.getElementById('faq');
+        if (faqSection) {
+          setTimeout(() => {
+            faqSection.scrollIntoView({ behavior: 'smooth' });
+          }, 50);
+        }
+      }}
+    >
+      Ver preguntas frecuentes
+      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+    </Button>
+  </div>
+</div>
       </div>
     </section>
   );

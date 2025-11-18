@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, Star } from "lucide-react";
 
 const testimonials = [
   {
@@ -60,6 +62,15 @@ export default function TestimonialsSection() {
     return () => clearInterval(interval);
   }, [isAutoPlay]);
 
+  // ✅ Función para abrir ventana emergente de reseñas
+  const openGoogleReview = () => {
+    window.open(
+      "https://maps.google.com/maps/place/?q=place_id:ChIJH9qhYmJZ3YURVEKCQVqlWlQ&review=write",
+      "_blank",
+      "width=600,height=600"
+    );
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -71,7 +82,7 @@ export default function TestimonialsSection() {
       <div className="absolute top-20 right-20 w-64 h-64 bg-[#C4B497]/10 rounded-full blur-3xl animate-float"></div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header — ✅ ESTILO IDÉNTICO AL HERO */}
+        {/* Section Header */}
         <div className="text-center mb-16">
           <div
             className={`transition-all duration-800 ${
@@ -81,11 +92,7 @@ export default function TestimonialsSection() {
             <h2 className="font-pinyon text-4xl sm:text-5xl lg:text-6xl text-[#CEA663] mb-4 leading-tight">
               Lo que dicen nuestros pacientes
             </h2>
-
-            {/* ✅ Línea decorativa */}
             <div className="w-20 h-1 bg-gradient-to-r from-[#CEA663] to-[#C4B497] rounded-full mx-auto mb-6"></div>
-
-            {/* ✅ Subtítulo — igual que en Hero */}
             <p className="font-taviraj text-xl sm:text-2xl lg:text-3xl text-[#D4BAAC] max-w-3xl mx-auto leading-relaxed">
               Historias reales de transformación y satisfacción
             </p>
@@ -156,6 +163,40 @@ export default function TestimonialsSection() {
                 <p className="text-white font-semibold text-sm">{testimonial.author}</p>
               </div>
             ))}
+          </div>
+
+          {/* ✅ NUEVA SECCIÓN: Invitación a reseñas en Google — Versión Popup Funcional */}
+          <div
+            className={`mt-16 text-center transition-all duration-800 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+          >
+            <div className="inline-block bg-[#000000]/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-[#CEA663]/20 hover-glow">
+              <div className="flex flex-col items-center">
+                <div className="flex items-center mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-6 h-6 text-[#CEA663] fill-[#CEA663]" />
+                  ))}
+                </div>
+                <h3 className="font-taviraj text-2xl md:text-3xl font-bold text-[#CEA663] mb-3">
+                  ¿Te gustó tu experiencia?
+                </h3>
+                <p className="font-quicksand text-gray-300 max-w-2xl mb-4 leading-relaxed">
+                  Ayúdanos a crecer compartiendo tu opinión en Google. Tu reseña marca la diferencia.
+                </p>
+                <Button
+                  size="lg"
+                  className="bg-[#CEA663] hover:bg-[#C4A490] text-black font-quicksand font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  onClick={openGoogleReview}
+                >
+                  Dejar una reseña en Google
+                  <ExternalLink className="ml-2 w-5 h-5" />
+                </Button>
+                <p className="font-quicksand text-xs text-gray-500 mt-2">
+                  ⭐ Se abrirá una ventana emergente con el formulario de reseñas.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

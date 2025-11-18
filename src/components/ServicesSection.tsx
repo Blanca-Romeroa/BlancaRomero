@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { motion, type Transition } from 'framer-motion';
@@ -10,7 +10,7 @@ interface Service {
   features: string[];
   detailedDescription: string;
   detailedFeatures: string[];
-  image: string; // ✅ Añadido campo de imagen
+  image: string;
 }
 
 const easeOutFunction: [number, number, number, number] = [0, 0, 0.58, 1];
@@ -27,6 +27,14 @@ export const ServicesSection: React.FC = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedService(null);
+  };
+
+  // ✅ Nueva función: scroll suave a contacto
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const services: Service[] = [
@@ -56,7 +64,7 @@ export const ServicesSection: React.FC = () => {
         "NAD+: Mayor energía y enfoque mental, mejora la memoria y concentración, alivia síntomas de dolor y abstinencia, combate la depresión y tiene efecto antienvejecimiento",
         "Ideal como complemento en tratamientos oncológicos: disminuye los efectos secundarios de la quimioterapia y radioterapia."
       ],
-      image: "/Sueroterapia IV.webp", // ✅ Ruta de la imagen
+      image: "/Sueroterapia IV.webp",
     },
     {
       title: "Células Madre",
@@ -80,7 +88,7 @@ export const ServicesSection: React.FC = () => {
         "Ansiedad (y uso estético en regeneración facial/corporal)",
         "Presupuesto personalizado bajo solicitud."
       ],
-      image: "/CelulasMadre.webp", // ✅ Ruta de la imagen
+      image: "/CelulasMadre.webp",
     },
     {
       title: "Implante de Placenta Liofilizada",
@@ -111,7 +119,7 @@ export const ServicesSection: React.FC = () => {
         "Hormonales: Climaterio/menopausia, disfunción eréctil, pérdida de libido, trastornos menstruales, sequedad/flacidez cutánea, envejecimiento prematuro",
         "Generales / Preventivas: Antienvejecimiento, fatiga crónica, estrés, ansiedad, insomnio, déficit de memoria, apoyo pre/post quirúrgico, quimio/radioterapia, inmunosupresión"
       ],
-      image: "/ImplantedePlacenta.webp", // ✅ Ruta de la imagen
+      image: "/ImplantedePlacenta.webp",
     },
     {
       title: "Pellet Hormonal",
@@ -138,11 +146,10 @@ export const ServicesSection: React.FC = () => {
         "Mejora memoria, claridad mental y corrige insomnio",
         "Ideal para mujeres y hombres que buscan recuperar energía, control emocional y calidad de vida."
       ],
-      image: "/PelletHormonal.webp", // ✅ Ruta de la imagen
+      image: "/PelletHormonal.webp",
     }
   ];
 
-  // NUEVO: Servicio específico para hombres (Pellet Hormonal - Enfoque Masculino)
   const pelletHombresService: Service = {
     title: "Pellet Hormonal ♂️",
     description: "Cómo beneficia a los hombres: energía, libido, masa muscular y más.",
@@ -187,7 +194,7 @@ export const ServicesSection: React.FC = () => {
       "⚠️ Consideraciones:",
       "Se requiere evaluación médica previa. No recomendado en casos de cáncer prostático no tratado, enfermedad hepática grave o tromboembolismo activo."
     ],
-    image: "/PelletHormonal.webp", // ✅ Misma imagen para consistencia
+    image: "/PelletHormonal.webp",
   };
 
   const itemTransition: Transition = { duration: 0.5, ease: easeOutFunction };
@@ -222,7 +229,6 @@ export const ServicesSection: React.FC = () => {
           </motion.p>
         </div>
 
-        {/* Tarjetas verticales */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <motion.div
@@ -236,7 +242,6 @@ export const ServicesSection: React.FC = () => {
             >
               <Card className="bg-[#000000]/50 backdrop-blur-sm rounded-2xl p-6 border border-[#CEA663]/20 hover-glow transition-all duration-300 group h-full flex flex-col">
                 <CardHeader className="text-center">
-                  {/* ✅ IMAGEN EN LUGAR DE ICONO */}
                   <div className="mb-4 group-hover:scale-105 transition-transform">
                     <div className="w-20 h-20 mx-auto overflow-hidden rounded-xl">
                       <img
@@ -272,7 +277,6 @@ export const ServicesSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Nueva sección horizontal para Pellet Hormonal (Hombres) */}
         <div className="mt-12">
           <motion.div
             initial="hidden"
@@ -283,7 +287,6 @@ export const ServicesSection: React.FC = () => {
             className="bg-[#000000]/50 backdrop-blur-sm rounded-2xl p-6 border border-[#CEA663]/20 hover-glow transition-all duration-300"
           >
             <div className="flex flex-col md:flex-row items-start gap-6">
-              {/* ✅ Imagen y título */}
               <div className="md:w-1/4 flex-shrink-0 flex flex-col items-center">
                 <div className="mb-4 group-hover:scale-105 transition-transform">
                   <div className="w-20 h-20 overflow-hidden rounded-xl">
@@ -301,38 +304,18 @@ export const ServicesSection: React.FC = () => {
                 </CardDescription>
               </div>
 
-              {/* Área con beneficios generales */}
               <div className="md:w-1/4 flex-shrink-0">
                 <h3 className="font-semibold text-white mb-4">BENEFICIOS</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-start text-sm text-gray-300">
-                    <div className="w-1.5 h-1.5 bg-[#CEA663] rounded-full mr-2 mt-1.5" />
-                    <span>Aumenta energía física y mental</span>
-                  </li>
-                  <li className="flex items-start text-sm text-gray-300">
-                    <div className="w-1.5 h-1.5 bg-[#CEA663] rounded-full mr-2 mt-1.5" />
-                    <span>Incrementa el deseo sexual (libido)</span>
-                  </li>
-                  <li className="flex items-start text-sm text-gray-300">
-                    <div className="w-1.5 h-1.5 bg-[#CEA663] rounded-full mr-2 mt-1.5" />
-                    <span>Aumenta la masa muscular</span>
-                  </li>
-                  <li className="flex items-start text-sm text-gray-300">
-                    <div className="w-1.5 h-1.5 bg-[#CEA663] rounded-full mr-2 mt-1.5" />
-                    <span>Fortalece la densidad ósea</span>
-                  </li>
-                  <li className="flex items-start text-sm text-gray-300">
-                    <div className="w-1.5 h-1.5 bg-[#CEA663] rounded-full mr-2 mt-1.5" />
-                    <span>Favorece la producción de esperma</span>
-                  </li>
-                  <li className="flex items-start text-sm text-gray-300">
-                    <div className="w-1.5 h-1.5 bg-[#CEA663] rounded-full mr-2 mt-1.5" />
-                    <span>Mejora la calidad del sueño</span>
-                  </li>
+                  {pelletHombresService.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start text-sm text-gray-300">
+                      <div className="w-1.5 h-1.5 bg-[#CEA663] rounded-full mr-2 mt-1.5" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
-              {/* Área roja: Beneficios en el día a día */}
               <div className="md:w-2/4 flex-grow">
                 <h3 className="font-semibold text-white mb-4">¿Cómo te beneficia en tu día a día?</h3>
                 <ul className="space-y-2 mb-6">
@@ -369,7 +352,7 @@ export const ServicesSection: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Botón Agendar Consulta */}
+        {/* ✅ Botón Agendar Consulta — con scroll suave */}
         <div className="text-center mt-12">
           <motion.div
             initial="hidden"
@@ -380,7 +363,8 @@ export const ServicesSection: React.FC = () => {
           >
             <Button
               size="lg"
-              className="bg-[#CEA663] hover:bg-[#C4A490] text-black"
+              className="bg-[#CEA663] hover:bg-[#C4A490] text-black font-quicksand font-semibold px-8 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              onClick={scrollToContact}
             >
               Agendar Consulta
             </Button>
