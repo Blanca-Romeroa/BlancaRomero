@@ -1,14 +1,41 @@
+# robots.txt para Dra. Blanca Romero
+# Generado para maximizar indexación y seguridad
+
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
+User-agent: Yandex
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Permitir a redes sociales para previews
 User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: WhatsApp
+Allow: /
+
+# Bloquear bots maliciosos o irrelevantes
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Regla general: permitir todo (SPA-friendly)
 User-agent: *
 Allow: /
+
+# Sitemap (¡se genera automáticamente en Vercel con el sitemap.xml!)
+Sitemap: https://dra-blancaromero.com/sitemap.xml
