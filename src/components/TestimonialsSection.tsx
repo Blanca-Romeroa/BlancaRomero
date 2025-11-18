@@ -65,7 +65,7 @@ export default function TestimonialsSection() {
   // ✅ Función para abrir ventana emergente de reseñas
   const openGoogleReview = () => {
     window.open(
-      "https://maps.google.com/maps/place/?q=place_id:ChIJH9qhYmJZ3YURVEKCQVqlWlQ&review=write",
+      "https://search.google.com/local/writereview?placeid=ChIJHz1aYqFH2YARxKalhSAUSgU",
       "_blank",
       "width=600,height=600"
     );
@@ -143,7 +143,7 @@ export default function TestimonialsSection() {
             </div>
           </div>
 
-          {/* Additionaal testimonial cards below */}
+          {/* Additional testimonial cards below */}
           <div className="grid md:grid-cols-3 gap-6 mt-12">
             {testimonials.slice(0, 3).map((testimonial, idx) => (
               <div
