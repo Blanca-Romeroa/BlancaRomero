@@ -1,0 +1,91 @@
+# ----------------------------
+# Node & Dependencies
+# ----------------------------
+node_modules/
+.jspm_packages/
+
+# ----------------------------
+# Package Manager Logs & Caches
+# ----------------------------
+.npm/
+.pnpm-store/
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ----------------------------
+# Logs & Diagnostics
+# ----------------------------
+logs/
+*.log
+report.[0-9]*.json
+
+# ----------------------------
+# Environment Variables
+# ----------------------------
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env.*.local
+
+# Keep examples (safe to commit)
+!.env.example
+!.env.local.example
+
+# ----------------------------
+# Build Outputs (Next.js + Vercel)
+# ----------------------------
+.next/
+out/
+dist/
+build/
+
+# Vercel & Netlify config is safe to commit — do NOT ignore!
+# .vercel/ and netlify.toml should NOT be ignored
+
+# ----------------------------
+# Coverage & Testing
+# ----------------------------
+coverage/
+.nyc_output/
+
+# ----------------------------
+# TypeScript & Tooling
+# ----------------------------
+*.tsbuildinfo
+.cache/
+.parcel-cache/
+.vite/
+.vite-inspect/
+
+# ----------------------------
+# IDE & OS
+# ----------------------------
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+.idea/
+*.iml
+.vs/
+*.sw[po]
+.DS_Store
+Thumbs.db
+
+# ----------------------------
+# Supabase (adjust if needed)
+# ----------------------------
+# supabase/edge_functions/**   # ← descomenta si NO quieres subirlas
+# supabase/config.toml         # ← ¡normalmente SÍ se sube!
