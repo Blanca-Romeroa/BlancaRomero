@@ -1,4 +1,3 @@
-// src/components/ContactSection.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import { User, Mail, Phone, Send, Loader2, MessageSquare, Clock, CheckCircle, Zap, MapPin, ArrowRight, ExternalLink, Navigation } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -174,7 +173,11 @@ const ContactSection: React.FC = () => {
     {
       icon: Clock,
       title: 'Horario de atención',
-      value: 'Lun–Vie: 8:00 AM – 4:00 PM\nSáb: 7:00 AM – 2:00 PM\nDom: Cerrado',
+      value: [
+        { day: 'Lunes–Viernes', hours: '8:00 AM – 4:00 PM' },
+        { day: 'Sábado', hours: '7:00 AM – 2:00 PM' },
+        { day: 'Domingo', hours: 'Cerrado' }
+      ],
       description: 'Atendemos con cita previa.'
     }
   ];
@@ -216,18 +219,29 @@ const ContactSection: React.FC = () => {
               <CardHeader>
                 <CardTitle className="flex items-center text-[#CEA663] font-taviraj">
                   <MessageSquare className="w-6 h-6 mr-2" />
-                  Ponte en contacto
+                  <span className="whitespace-nowrap">Ponte en contacto</span>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-5">
+              <CardContent className="space-y-6">
                 {contactInfo.map((info, index) => (
                   <div key={index} className="flex items-start space-x-3">
-                    <div className="p-2.5 rounded-lg bg-[#CEA663]/20">
+                    <div className="p-2.5 rounded-lg bg-[#CEA663]/20 flex-shrink-0">
                       <info.icon className="w-5 h-5 text-[#CEA663]" />
                     </div>
-                    <div className="text-left">
-                      <h4 className="font-taviraj font-semibold text-[#CEA663] mb-0.5 text-balance">{info.title}</h4>
-                      <p className="font-quicksand font-medium mb-0.5 text-white text-balance whitespace-pre-line">{info.value}</p>
+                    <div className="flex-grow">
+                      <h4 className="font-taviraj font-semibold text-[#CEA663] mb-1 text-balance">{info.title}</h4>
+                      {Array.isArray(info.value) ? (
+                        <div className="space-y-1 mb-1">
+                          {info.value.map((item, idx) => (
+                            <div key={idx} className="font-quicksand font-medium text-white">
+                              <div>{item.day}</div>
+                              <div className="text-[#CEA663]">{item.hours}</div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="font-quicksand font-medium mb-1 text-white text-balance">{info.value}</p>
+                      )}
                       <p className="font-quicksand text-sm text-gray-400 text-balance">{info.description}</p>
                     </div>
                   </div>
@@ -499,49 +513,49 @@ const ContactSection: React.FC = () => {
         </div>
 
         {/* Call to Action */}
-<div
-  className="mt-12 md:mt-16 text-center bg-[#000000]/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-[#CEA663]/20 hover-glow transition-all duration-300"
->
-  <h3 className="font-taviraj text-xl md:text-2xl font-bold mb-3 md:mb-4 text-white">
-    ¿Listo para tu transformación integral?
-  </h3>
-  <p className="font-quicksand text-gray-300 mb-5 max-w-2xl mx-auto text-balance">
-    Combinamos ciencia avanzada con un enfoque humano para ayudarte a verte y sentirte mejor.
-  </p>
-  <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
-    <a
-      href={`https://wa.me/${WHATSAPP_NUMBER}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block w-full sm:w-auto"
-    >
-      <Button
-        size="lg"
-        className="group w-full sm:w-auto px-6 bg-[#CEA663] hover:bg-[#C4A490] text-black font-quicksand font-semibold"
-      >
-        Agenda tu cita hoy
-        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-      </Button>
-    </a>
-    <Button
-      variant="outline"
-      size="lg"
-      className="group w-full sm:w-auto px-6 border-[#CEA663]/30 text-white hover:border-[#CEA663] hover:bg-[#CEA663]/20 font-quicksand"
-      onClick={(e) => {
-        e.preventDefault();
-        const faqSection = document.getElementById('faq');
-        if (faqSection) {
-          setTimeout(() => {
-            faqSection.scrollIntoView({ behavior: 'smooth' });
-          }, 50);
-        }
-      }}
-    >
-      Ver preguntas frecuentes
-      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-    </Button>
-  </div>
-</div>
+        <div
+          className="mt-12 md:mt-16 text-center bg-[#000000]/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-[#CEA663]/20 hover-glow transition-all duration-300"
+        >
+          <h3 className="font-taviraj text-xl md:text-2xl font-bold mb-3 md:mb-4 text-white">
+            ¿Listo para tu transformación integral?
+          </h3>
+          <p className="font-quicksand text-gray-300 mb-5 max-w-2xl mx-auto text-balance">
+            Combinamos ciencia avanzada con un enfoque humano para ayudarte a verte y sentirte mejor.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full sm:w-auto"
+            >
+              <Button
+                size="lg"
+                className="group w-full sm:w-auto px-6 bg-[#CEA663] hover:bg-[#C4A490] text-black font-quicksand font-semibold"
+              >
+                Agenda tu cita hoy
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </a>
+            <Button
+              variant="outline"
+              size="lg"
+              className="group w-full sm:w-auto px-6 border-[#CEA663]/30 text-white hover:border-[#CEA663] hover:bg-[#CEA663]/20 font-quicksand"
+              onClick={(e) => {
+                e.preventDefault();
+                const faqSection = document.getElementById('faq');
+                if (faqSection) {
+                  setTimeout(() => {
+                    faqSection.scrollIntoView({ behavior: 'smooth' });
+                  }, 50);
+                }
+              }}
+            >
+              Ver preguntas frecuentes
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </div>
+        </div>
       </div>
     </section>
   );

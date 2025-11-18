@@ -26,13 +26,16 @@ export default function HeroSection() {
       {/* Contenido principal */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {/* Imagen logo - 50% más grande y bajado un poco */}
-          <div className="mb-6">
-            <img 
-              src="/logo.webp" 
-              alt="Logo Dra. Blanca Romero" 
-              className="w-72 h-72 mx-auto rounded-full object-cover shadow-lg"
-            />
+          {/* Imagen logo - Mostrada completamente sin recortes */}
+          <div className="mb-6 relative">
+            {/* Contenedor con borde circular y sombra para efecto visual */}
+            <div className="relative w-[320px] h-[320px] mx-auto rounded-full bg-transparent border-4 border-[#CEA663]/30 shadow-xl shadow-[#CEA663]/20">
+              <img 
+                src="/logo.webp" 
+                alt="Logo Dra. Blanca Romero" 
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
           
           {/* Título principal */}
