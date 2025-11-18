@@ -20,7 +20,7 @@ export default function App() {
         {/* Fondo de partículas doradas */}
         <ParticleBackground density={70} />
 
-        {/* Contenido sobre el fondo */}
+        {/* Contenido sobre el fondoo */}
         <div className="relative z-10">
           <HashRouter>
             <Routes>
