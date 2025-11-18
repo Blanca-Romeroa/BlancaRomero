@@ -143,7 +143,7 @@ export default function TestimonialsSection() {
             </div>
           </div>
 
-          {/* Additional testimonial cards below */}
+          {/* Additionaal testimonial cards below */}
           <div className="grid md:grid-cols-3 gap-6 mt-12">
             {testimonials.slice(0, 3).map((testimonial, idx) => (
               <div
