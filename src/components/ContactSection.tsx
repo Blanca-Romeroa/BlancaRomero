@@ -1,3 +1,4 @@
+// src/components/ContactSection.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import { User, Mail, Phone, Send, Loader2, MessageSquare, Clock, CheckCircle, Zap, MapPin, ArrowRight, ExternalLink, Navigation } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -215,16 +216,17 @@ const ContactSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
           {/* Left Column - Contact Info */}
           <div className="lg:col-span-1">
-            <Card className="bg-[#000000]/50 backdrop-blur-sm rounded-2xl p-8 border border-[#CEA663]/20 hover-glow transition-all duration-300">
+            {/* ✅ MODIFICACIÓN: Sección "Ponte en contacto" con estilo similar a la imagen */}
+            <Card className="bg-[#000000]/50 backdrop-blur-sm rounded-2xl p-6 border border-[#CEA663]/20 hover-glow transition-all duration-300">
               <CardHeader>
-                <CardTitle className="flex items-center text-[#CEA663] font-taviraj">
-                  <MessageSquare className="w-6 h-6 mr-2" />
-                  <span className="whitespace-nowrap">Ponte en contacto</span>
+                <CardTitle className="flex items-center text-[#CEA663] font-taviraj text-lg">
+                  <MessageSquare className="w-5 h-5 mr-2" />
+                  <span>Ponte en contacto</span>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-4">
                 {contactInfo.map((info, index) => (
-                  <div key={index} className="flex items-start space-x-3">
+                  <div key={index} className="flex items-start space-x-3 py-3 border-b border-[#CEA663]/10 last:border-b-0">
                     <div className="p-2.5 rounded-lg bg-[#CEA663]/20 flex-shrink-0">
                       <info.icon className="w-5 h-5 text-[#CEA663]" />
                     </div>
@@ -242,13 +244,14 @@ const ContactSection: React.FC = () => {
                       ) : (
                         <p className="font-quicksand font-medium mb-1 text-white text-balance">{info.value}</p>
                       )}
-                      <p className="font-quicksand text-sm text-gray-400 text-balance">{info.description}</p>
+                      <p className="font-quicksand text-xs text-gray-400 text-balance">{info.description}</p>
                     </div>
                   </div>
                 ))}
               </CardContent>
             </Card>
 
+            {/* ✅ MODIFICACIÓN: Acciones rápidas con estilo similar a la imagen */}
             <Card className="bg-[#000000]/50 backdrop-blur-sm rounded-2xl p-6 border border-[#CEA663]/20 hover-glow transition-all duration-300 mt-6">
               <CardContent className="p-5 md:p-6">
                 <h4 className="font-taviraj font-semibold mb-3 md:mb-4 text-[#CEA663]">Acciones rápidas</h4>
