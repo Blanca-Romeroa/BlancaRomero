@@ -8,39 +8,15 @@ import {
 import { useState, useEffect, useRef } from "react";
 import { Input } from "@/components/ui/input";
 
-// Todas las preguntas frecuentes (40 en total)
+// Todas las preguntas frecuentes (40 en total) - solo sueroterapia, células madre, implante de placenta y pellet hormonal
 const allFaqs = [
+  // Sueroterapia (10 preguntas)
   {
     id: "sueroterapia-1",
     question: "¿Qué es la sueroterapia IV y cómo funciona?",
     answer: "La sueroterapia IV es un tratamiento que permite la administración directa de vitaminas, minerales y medicamentos en el torrente sanguíneo. Este método asegura una absorción completa y rápida de los nutrientes, proporcionando efectos inmediatos y eficaces. Es especialmente útil para personas con problemas de absorción intestinal o necesidades nutricionales elevadas.",
     category: "sueroterapia"
   },
-  {
-    id: "celulas-1",
-    question: "¿Qué es la terapia con células madre humanas?",
-    answer: "La terapia con células madre humanas es una de las técnicas más avanzadas en medicina regenerativa. Se aplica intravenosamente y se personaliza según la historia clínica del paciente para lograr la restauración de tejidos y órganos con resultados documentados. Tiene una alta tasa de éxito en la mejora de síntomas.",
-    category: "celulas"
-  },
-  {
-    id: "placenta-1",
-    question: "¿Qué es el implante de placenta liofilizada?",
-    answer: "El implante de placenta liofilizada es un biológico derivado de placenta humana que ha sido sometido a procesos físicos y químicos rigurosos para preservar sus propiedades y garantizar seguridad. Se implanta subdérmicamente y libera sus componentes activos de forma gradual, funcionando como una 'batería biológica'.",
-    category: "placenta"
-  },
-  {
-    id: "pellets-1",
-    question: "¿Qué son los pellets hormonales?",
-    answer: "Los pellets hormonales son implantes subdérmicos que liberan hormonas de forma constante y natural durante aproximadamente 6 meses. Son un procedimiento ambulatorio de solo 10 minutos que permite un equilibrio hormonal sostenido y efectivo. Se personalizan según las necesidades hormonales de cada paciente.",
-    category: "pellets"
-  },
-  {
-    id: "estetica-1",
-    question: "¿Qué incluye la medicina estética facial?",
-    answer: "La medicina estética facial incluye tratamientos anti-envejecimiento como botox y rellenos dérmicos, hidratación profunda con ácido hialurónico y plasma rico en plaquetas, lifting no quirúrgico con radiofrecuencia, tratamiento de arrugas y líneas de expresión, y contorneado facial personalizado para realzar la belleza natural.",
-    category: "estetica"
-  },
-  // Sueroterapia (4 preguntas adicionales)
   {
     id: "sueroterapia-2",
     question: "¿Cuáles son los tipos de sueros disponibles?",
@@ -65,7 +41,43 @@ const allFaqs = [
     answer: "La sueroterapia es adecuada para la mayoría de las personas, especialmente para aquellas con deficiencias nutricionales, fatiga crónica, estrés, o como apoyo en tratamientos médicos. Se realiza una evaluación previa para determinar la idoneidad y personalizar el tratamiento.",
     category: "sueroterapia"
   },
-  // Células Madre (4 preguntas adicionales)
+  {
+    id: "sueroterapia-6",
+    question: "¿Cuánto tiempo dura una sesión de sueroterapia?",
+    answer: "La duración de una sesión de sueroterapia varía entre 30 minutos a 1 hora, dependiendo del tipo de suero y la complejidad del tratamiento. El procedimiento es cómodo y se realiza en un ambiente relajado.",
+    category: "sueroterapia"
+  },
+  {
+    id: "sueroterapia-7",
+    question: "¿Es dolorosa la aplicación de sueroterapia?",
+    answer: "No, la aplicación de sueroterapia no es dolorosa. Solo se siente una pequeña punción al insertar la aguja en la vena. La mayoría de los pacientes reportan una experiencia cómoda y relajante durante la infusión.",
+    category: "sueroterapia"
+  },
+  {
+    id: "sueroterapia-8",
+    question: "¿Cuándo se empiezan a ver los resultados de la sueroterapia?",
+    answer: "Los resultados pueden notarse desde la primera sesión, especialmente en energía y bienestar general. Para beneficios más específicos como anti-envejecimiento o desintoxicación, se recomienda un plan de tratamiento continuo por varias semanas.",
+    category: "sueroterapia"
+  },
+  {
+    id: "sueroterapia-9",
+    question: "¿Cuáles son las contraindicaciones de la sueroterapia?",
+    answer: "Las contraindicaciones incluyen insuficiencia cardíaca grave, hipertensión no controlada, alergias severas a componentes del suero, y ciertas condiciones médicas específicas. Se realiza una evaluación médica completa antes de iniciar el tratamiento.",
+    category: "sueroterapia"
+  },
+  {
+    id: "sueroterapia-10",
+    question: "¿Cómo se personaliza un tratamiento de sueroterapia?",
+    answer: "El tratamiento se personaliza según tu historia clínica, análisis de laboratorio, objetivos de salud y necesidades nutricionales específicas. Cada suero se formula individualmente para maximizar los resultados y garantizar seguridad.",
+    category: "sueroterapia"
+  },
+  // Células Madre (10 preguntas)
+  {
+    id: "celulas-1",
+    question: "¿Qué es la terapia con células madre humanas?",
+    answer: "La terapia con células madre humanas es una de las técnicas más avanzadas en medicina regenerativa. Se aplica intravenosamente y se personaliza según la historia clínica del paciente para lograr la restauración de tejidos y órganos con resultados documentados. Tiene una alta tasa de éxito en la mejora de síntomas.",
+    category: "celulas"
+  },
   {
     id: "celulas-2",
     question: "¿Qué condiciones se pueden tratar con células madre?",
@@ -90,7 +102,43 @@ const allFaqs = [
     answer: "Los efectos son progresivos y sostenidos. Se observan mejorías desde las primeras semanas, con resultados máximos entre 3 a 6 meses. La duración puede variar según la condición tratada y la respuesta individual del paciente.",
     category: "celulas"
   },
-  // Placenta Liofilizada (4 preguntas adicionales)
+  {
+    id: "celulas-6",
+    question: "¿De dónde provienen las células madre utilizadas en el tratamiento?",
+    answer: "Las células madre utilizadas son de origen humano, obtenidas de tejidos específicos bajo estrictas normas de bioseguridad. Se someten a procesos rigurosos de purificación y caracterización para garantizar su calidad y efectividad.",
+    category: "celulas"
+  },
+  {
+    id: "celulas-7",
+    question: "¿Es segura la terapia con células madre?",
+    answer: "Sí, la terapia con células madre es segura cuando se aplica bajo supervisión médica especializada. Se siguen protocolos estrictos de seguridad y se realiza una evaluación previa para determinar la idoneidad del paciente para el tratamiento.",
+    category: "celulas"
+  },
+  {
+    id: "celulas-8",
+    question: "¿Cuántas sesiones de células madre se requieren?",
+    answer: "El número de sesiones depende de la condición a tratar y la respuesta individual del paciente. Generalmente se requiere una sesión inicial seguida de sesiones de mantenimiento según el plan personalizado de cada paciente.",
+    category: "celulas"
+  },
+  {
+    id: "celulas-9",
+    question: "¿Cuáles son los posibles efectos secundarios de la terapia con células madre?",
+    answer: "Los efectos secundarios son mínimos y raros. Pueden incluir ligera inflamación en el sitio de aplicación o reacciones leves. Se realizan controles médicos rigurosos para garantizar la seguridad del paciente en todo momento.",
+    category: "celulas"
+  },
+  {
+    id: "celulas-10",
+    question: "¿Cómo se monitorea la evolución del paciente con células madre?",
+    answer: "La evolución se monitorea mediante evaluaciones médicas regulares, análisis de laboratorio y seguimiento de síntomas. Se documentan los progresos y se ajustan los planes de tratamiento según sea necesario para optimizar los resultados.",
+    category: "celulas"
+  },
+  // Placenta Liofilizada (10 preguntas)
+  {
+    id: "placenta-1",
+    question: "¿Qué es el implante de placenta liofilizada?",
+    answer: "El implante de placenta liofilizada es un biológico derivado de placenta humana que ha sido sometido a procesos físicos y químicos rigurosos para preservar sus propiedades y garantizar seguridad. Se implanta subdérmicamente y libera sus componentes activos de forma gradual, funcionando como una 'batería biológica'.",
+    category: "placenta"
+  },
   {
     id: "placenta-2",
     question: "¿Cuáles son las indicaciones terapéuticas del implante de placenta?",
@@ -115,7 +163,43 @@ const allFaqs = [
     answer: "Contiene factores de crecimiento, interleucinas y neuropeptidos, aminoácidos, factores antitumorales e inmunomoduladores, y eritropoyetina. Estos componentes promueven la regeneración y restauración del equilibrio corporal.",
     category: "placenta"
   },
-  // Pellets Hormonales (4 preguntas adicionales)
+  {
+    id: "placenta-6",
+    question: "¿Cómo se aplica el implante de placenta liofilizada?",
+    answer: "El implante se aplica subdérmicamente en el tejido adiposo periumbilical con anestesia local. Es un procedimiento ambulatorio de pocos minutos que permite la liberación gradual de componentes activos durante semanas o meses.",
+    category: "placenta"
+  },
+  {
+    id: "placenta-7",
+    question: "¿Cuáles son los beneficios estéticos del implante de placenta?",
+    answer: "Los beneficios estéticos incluyen hidratación cutánea mejorada, reducción de arrugas y líneas de expresión, mejora en la textura y luminosidad de la piel, aumento de la elasticidad y firmeza, y rejuvenecimiento facial y corporal natural.",
+    category: "placenta"
+  },
+  {
+    id: "placenta-8",
+    question: "¿Cuáles son los beneficios hormonales del implante de placenta?",
+    answer: "Los beneficios hormonales incluyen regulación del ciclo menstrual, mejora en la libido y deseo sexual, equilibrio hormonal durante la menopausia, reducción de síntomas climatéricos, y mejora en el estado de ánimo y energía general.",
+    category: "placenta"
+  },
+  {
+    id: "placenta-9",
+    question: "¿Es seguro el implante de placenta liofilizada?",
+    answer: "Sí, es seguro cuando se aplica por profesionales especializados. El proceso incluye estrictos controles de calidad y seguridad, y se utilizan productos certificados. Se realiza una evaluación previa para determinar la idoneidad del paciente.",
+    category: "placenta"
+  },
+  {
+    id: "placenta-10",
+    question: "¿Cuánto tiempo dura el procedimiento de implante de placenta?",
+    answer: "El procedimiento dura aproximadamente 10-15 minutos y es ambulatorio. Se realiza con anestesia local para garantizar comodidad, y el paciente puede retomar sus actividades normales inmediatamente después del tratamiento.",
+    category: "placenta"
+  },
+  // Pellets Hormonales (10 preguntas)
+  {
+    id: "pellets-1",
+    question: "¿Qué son los pellets hormonales?",
+    answer: "Los pellets hormonales son implantes subdérmicos que liberan hormonas de forma constante y natural durante aproximadamente 6 meses. Son un procedimiento ambulatorio de solo 10 minutos que permite un equilibrio hormonal sostenido y efectivo. Se personalizan según las necesidades hormonales de cada paciente.",
+    category: "pellets"
+  },
   {
     id: "pellets-2",
     question: "¿Cómo se aplica el pellet hormonal?",
@@ -140,123 +224,35 @@ const allFaqs = [
     answer: "Los efectos secundarios son mínimos y raros. Pueden incluir ligera inflamación en el sitio de implantación o ajustes temporales en el estado de ánimo mientras el cuerpo se adapta a los niveles hormonales equilibrados. Son generalmente leves y de corta duración.",
     category: "pellets"
   },
-  // Medicina Estética Facial (4 preguntas adicionales)
   {
-    id: "estetica-2",
-    question: "¿Qué resultados se pueden esperar de la medicina estética facial?",
-    answer: "Se pueden esperar resultados como rejuvenecimiento facial, reducción de arrugas y líneas de expresión, mejora de la textura y luminosidad de la piel, contorneado facial definido, y un aspecto más descansado y juvenil. Los resultados son naturales y respetan la identidad facial.",
-    category: "estetica"
+    id: "pellets-6",
+    question: "¿Cuánto tiempo dura el efecto del pellet hormonal?",
+    answer: "El efecto del pellet hormonal dura aproximadamente 6 meses en mujeres y 4-5 meses en hombres. La duración puede variar según el metabolismo individual y las necesidades hormonales específicas de cada paciente.",
+    category: "pellets"
   },
   {
-    id: "estetica-3",
-    question: "¿Cuánto dura el efecto de los tratamientos estéticos faciales?",
-    answer: "La duración varía según el tratamiento. El botox dura 3-6 meses, los rellenos dérmicos 6-18 meses, y los tratamientos de radiofrecuencia pueden tener efectos duraderos con sesiones de mantenimiento. Se personaliza el plan de mantenimiento según cada paciente.",
-    category: "estetica"
+    id: "pellets-7",
+    question: "¿Cómo se personaliza el pellet hormonal para cada paciente?",
+    answer: "El pellet se personaliza según los análisis de laboratorio, historia clínica, síntomas presentados y objetivos de salud de cada paciente. Se determina la dosis exacta de hormonas necesarias para lograr un equilibrio óptimo.",
+    category: "pellets"
   },
   {
-    id: "estetica-4",
-    question: "¿Qué técnicas se utilizan en medicina estética facial?",
-    answer: "Técnicas utilizadas: botox para arrugas y líneas de expresión, rellenos dérmicos para volúmenes y contornos, plasma rico en plaquetas para regeneración, radiofrecuencia para lifting no quirúrgico, hilos tensores para elevación, y tratamientos personalizados según las necesidades de cada paciente.",
-    category: "estetica"
+    id: "pellets-8",
+    question: "¿Qué hormonas se pueden incluir en los pellets?",
+    answer: "Los pellets pueden contener estrógenos (estradiol), progesterona, testosterona y otras hormonas según las necesidades específicas de cada paciente. La combinación se personaliza para lograr el equilibrio hormonal deseado.",
+    category: "pellets"
   },
   {
-    id: "estetica-5",
-    question: "¿Es seguro el botox y los rellenos dérmicos?",
-    answer: "Sí, son completamente seguros cuando se aplican por profesionales capacitados. Utilizamos productos de primera calidad y seguridad comprobada. Los tratamientos son mínimamente invasivos y los resultados son naturales, manteniendo la identidad facial del paciente.",
-    category: "estetica"
-  },
-  // Tratamientos Corporales (5 preguntas)
-  {
-    id: "corporal-1",
-    question: "¿Qué incluyen los tratamientos corporales?",
-    answer: "Los tratamientos corporales incluyen modelado corporal para reducción de contorno y volumen, tratamientos anti-celulíticos para reducción de nódulos y textura irregular, reducción de grasa localizada sin cirugía, hidratación y nutrición profunda para mejorar elasticidad y textura, y drenaje linfático para eliminación de toxinas.",
-    category: "corporal"
+    id: "pellets-9",
+    question: "¿Quién puede recibir pellets hormonales?",
+    answer: "Los pellets hormonales son adecuados para personas con desequilibrios hormonales, especialmente durante la menopausia, andropausia o deficiencias hormonales. Se requiere una evaluación médica completa para determinar la idoneidad del tratamiento.",
+    category: "pellets"
   },
   {
-    id: "corporal-2",
-    question: "¿Cuántas sesiones se necesitan para ver resultados corporales?",
-    answer: "Los resultados son visibles desde la primera sesión, pero se recomienda un plan de tratamiento personalizado que puede incluir entre 4 a 10 sesiones según los objetivos específicos. Se evalúa individualmente para cada paciente y se ajusta según la evolución.",
-    category: "corporal"
-  },
-  {
-    id: "corporal-3",
-    question: "¿Qué beneficios tiene el drenaje linfático?",
-    answer: "El drenaje linfático mejora la circulación, elimina toxinas, reduce la retención de líquidos, alivia la sensación de piernas cansadas, y potencia los resultados de otros tratamientos corporales. Es relajante y promueve el bienestar general.",
-    category: "corporal"
-  },
-  {
-    id: "corporal-4",
-    question: "¿Se puede combinar varios tratamientos corporales?",
-    answer: "Sí, se pueden combinar tratamientos corporales para potenciar los resultados. Por ejemplo, drenaje linfático con tratamientos reductores, o hidratación profunda con radiofrecuencia. Se crea un plan personalizado según los objetivos y necesidades individuales.",
-    category: "corporal"
-  },
-  {
-    id: "corporal-5",
-    question: "¿Quién puede recibir tratamientos corporales?",
-    answer: "Los tratamientos corporales son adecuados para la mayoría de las personas que buscan tonificar, moldear y rejuvenecer su cuerpo. Se realiza una evaluación previa para determinar la idoneidad y personalizar el plan de tratamiento según las condiciones médicas y objetivos específicos.",
-    category: "corporal"
-  },
-  // Nutrición y Suplementación (5 preguntas)
-  {
-    id: "nutricion-1",
-    question: "¿Qué incluye la evaluación nutricional completa?",
-    answer: "La evaluación incluye análisis de hábitos alimenticios, objetivos de salud, condiciones médicas, estilo de vida, y mediciones antropométricas. Se consideran factores como intolerancias, alergias, y necesidades específicas para crear un plan nutricional personalizado.",
-    category: "nutricion"
-  },
-  {
-    id: "nutricion-2",
-    question: "¿Cómo se personaliza la suplementación?",
-    answer: "La suplementación se personaliza según la evaluación nutricional, deficiencias detectadas, objetivos de salud, y condiciones médicas. Se seleccionan vitaminas, minerales y compuestos bioactivos específicos para cada paciente, considerando su metabolismo y necesidades individuales.",
-    category: "nutricion"
-  },
-  {
-    id: "nutricion-3",
-    question: "¿Qué alimentos se recomiendan en la nutrición funcional?",
-    answer: "Se recomiendan alimentos funcionales como frutas ricas en antioxidantes, verduras de hoja verde, pescados grasos, nueces, semillas, aceite de oliva virgen extra y especias antiinflamatorias. El plan se adapta a tus necesidades específicas y objetivos de salud.",
-    category: "nutricion"
-  },
-  {
-    id: "nutricion-4",
-    question: "¿Cuál es el seguimiento nutricional?",
-    answer: "El seguimiento incluye evaluación mensual de progreso, ajustes al plan nutricional según necesidades, educación nutricional continua, recetas saludables y soporte personalizado. También se monitorean biomarcadores relevantes para asegurar resultados óptimos.",
-    category: "nutricion"
-  },
-  {
-    id: "nutricion-5",
-    question: "¿Cómo se combina la nutrición con otros tratamientos?",
-    answer: "La nutrición se combina con otros tratamientos para maximizar resultados. Proporciona la base nutricional necesaria para que otros tratamientos como sueroterapia, células madre y pellets hormonales funcionen de manera más efectiva y sostenible.",
-    category: "nutricion"
-  },
-  // Terapia Antiedad (5 preguntas)
-  {
-    id: "antiedad-1",
-    question: "¿Qué incluye la evaluación antiedad?",
-    answer: "La evaluación antiedad incluye análisis de marcadores biológicos, estilo de vida, historia clínica, objetivos personales, y factores genéticos. Se evalúan indicadores como inflamación, estrés oxidativo, niveles hormonales, y estado inmunológico para crear un plan integral.",
-    category: "antiedad"
-  },
-  {
-    id: "antiedad-2",
-    question: "¿Cómo se personaliza la terapia antiedad?",
-    answer: "La terapia antiedad se personaliza mediante una evaluación de marcadores biológicos y estilo de vida. Se combinan medicina regenerativa, nutrición, suplementación y tratamientos estéticos para ofrecer programas completos que ralentizan y revertir signos de envejecimiento a nivel celular.",
-    category: "antiedad"
-  },
-  {
-    id: "antiedad-3",
-    question: "¿Qué tratamientos se incluyen en la medicina regenerativa antiedad?",
-    answer: "La medicina regenerativa antiedad incluye células madre, sueroterapia, factores de crecimiento, suplementación antiedad con antioxidantes y péptidos, y tratamientos estéticos para mantener apariencia juvenil. Todo se adapta a las necesidades individuales de cada paciente.",
-    category: "antiedad"
-  },
-  {
-    id: "antiedad-4",
-    question: "¿Cuáles son los resultados esperados de la terapia antiedad?",
-    answer: "Los resultados incluyen aumento de energía y vitalidad, mejora de la memoria y concentración, reducción de fatiga, mejor calidad del sueño, aumento de la masa muscular y reducción de grasa corporal, y una apariencia más joven y saludable.",
-    category: "antiedad"
-  },
-  {
-    id: "antiedad-5",
-    question: "¿Cómo se mantiene el seguimiento en la terapia antiedad?",
-    answer: "El seguimiento incluye evaluación de biomarcadores y progreso, educación en bienestar y hábitos para envejecimiento saludable, apoyo psicológico para bienestar emocional y mental, y programas de mantenimiento para resultados sostenidos a largo plazo.",
-    category: "antiedad"
+    id: "pellets-10",
+    question: "¿Cuáles son las ventajas del pellet hormonal sobre otras formas de terapia?",
+    answer: "Las ventajas incluyen liberación constante de hormonas, evita picos y valles hormonales, no requiere aplicación diaria, efectos sostenidos por meses, personalización exacta de la dosis, y resultados más estables y predecibles que otras formas de terapia hormonal.",
+    category: "pellets"
   }
 ];
 

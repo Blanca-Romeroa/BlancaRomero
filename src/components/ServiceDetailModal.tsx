@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
+// ✅ Actualizamos la interfaz ServiceData para incluir la propiedad 'image'
 interface ServiceData {
   title: string;
   description: string;
   features: string[];
   detailedDescription?: string;
   detailedFeatures?: string[];
+  image: string; // <-- Nueva propiedad para la URL de la imagen
 }
 
 interface ServiceDetailModalProps {
@@ -73,8 +75,14 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({ service, onClos
         >
           <CardHeader className="pb-4 pt-6 pr-12"> {/* Espacio para el botón de cierre */}
             <div className="flex items-start space-x-4">
-              <div className="w-16 h-16 bg-[#CEA663]/20 rounded-md flex items-center justify-center">
-                <div className="w-8 h-8 bg-[#CEA663] rounded-full"></div>
+              {/* ✅ Reemplazamos el ícono genérico por la imagen del servicio */}
+              <div className="w-16 h-16 overflow-hidden rounded-md">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
               </div>
               <div>
                 <CardTitle className="text-2xl text-white">{service.title}</CardTitle>
