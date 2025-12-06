@@ -50,8 +50,9 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({ service, onClos
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm"
       onClick={handleBackdropClick}
     >
-      <div className="relative w-full max-w-2xl h-[80vh] overflow-y-auto bg-[#000000]/90 backdrop-blur-md border-[#CEA663]/30 border-2 shadow-xl" 
-           style={{ maxHeight: '80vh', maxWidth: '95vw' }}>
+      {/* ✅ Cambiamos max-w-2xl por max-w-lg para un ancho más compacto */}
+      {/* ✅ Cambiamos h-[80vh] por min-h-[60vh] max-h-[80vh] para controlar mejor la altura */}
+      <div className="relative w-full max-w-lg min-h-[60vh] max-h-[80vh] overflow-y-auto bg-[#000000]/90 backdrop-blur-md border-[#CEA663]/30 border-2 shadow-xl rounded-xl">
         
         {/* Botón de cierre fijo en la esquina superior derecha */}
         <div className="absolute top-4 right-4 z-10">
@@ -73,7 +74,8 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({ service, onClos
           className="w-full h-full overflow-y-auto"
           onClick={(e) => e.stopPropagation()}
         >
-          <CardHeader className="pb-4 pt-6 pr-12"> {/* Espacio para el botón de cierre */}
+          {/* ✅ Añadimos padding (p-6) al CardHeader para mejorar el espaciado */}
+          <CardHeader className="pb-4 pt-6 pr-12 pl-6"> {/* Espacio para el botón de cierre y padding izquierdo */}
             <div className="flex items-start space-x-4">
               {/* ✅ Reemplazamos el ícono genérico por la imagen del servicio */}
               <div className="w-16 h-16 overflow-hidden rounded-md">
@@ -91,11 +93,12 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({ service, onClos
             </div>
           </CardHeader>
 
-          <CardContent className="space-y-6 px-4 pb-4">
+          {/* ✅ Añadimos padding (p-6) al CardContent para que el texto no quede pegado a los bordes */}
+          <CardContent className="space-y-6 px-6 pb-6">
             {service.detailedDescription && (
               <div>
                 <h3 className="font-semibold text-lg mb-2 text-[#CEA663]">Descripción Detallada:</h3>
-                <p className="text-base text-gray-300">{service.detailedDescription}</p>
+                <p className="text-base text-gray-300 leading-relaxed">{service.detailedDescription}</p>
               </div>
             )}
 
@@ -106,7 +109,7 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({ service, onClos
                   {service.detailedFeatures.map((feature, index) => (
                     <li key={index} className="flex items-start">
                       <div className="w-1.5 h-1.5 bg-[#CEA663] rounded-full mr-2 mt-2.5" />
-                      <span className="text-base text-gray-300">{feature}</span>
+                      <span className="text-base text-gray-300 leading-relaxed">{feature}</span>
                     </li>
                   ))}
                 </ul>
