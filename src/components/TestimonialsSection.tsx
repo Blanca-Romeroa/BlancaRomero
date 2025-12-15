@@ -65,7 +65,7 @@ export default function TestimonialsSection() {
   // ✅ Función para abrir ventana emergente de reseñas
   const openGoogleReview = () => {
     window.open(
-      "https://maps.google.com/maps/place/?q=place_id:ChIJH9qhYmJZ3YURVEKCQVqlWlQ&review=write",
+      "https://search.google.com/local/writereview?placeid=ChIJHz1aYqFH2YARxKalhSAUSgU",
       "_blank",
       "width=600,height=600"
     );

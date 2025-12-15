@@ -54,7 +54,6 @@ export const ServicesSection: React.FC = () => {
         "Revitaliza el organismo",
         "Sube las defensas para prevenir enfermedades",
         "Mejora estados de agotamiento y fatiga",
-        "",
         "Tipos de sueros disponibles:",
         "Rejuvemax: Mejora la hidratación, aporta vitaminas y corrige deficiencias nutricionales, proporciona energía inmediata, alivia síntomas de resaca, fortalece el sistema inmune",
         "Rejuvecell: Aumenta la energía, desacelera el envejecimiento, reduce molestias musculares y articulares, mejora la calidad del sueño y el rendimiento deportivo",
